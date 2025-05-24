@@ -1,5 +1,7 @@
 {
   "projects": {
     "default": "fortune-teller-fd566"
-  }
+  },
+  "targets": {},
+  "etags": {}
 }

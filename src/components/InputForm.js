@@ -1,15 +1,33 @@
-// src/components/InputForm.js
-import React, { useState } from 'react';
-
-const categories = ['Love', 'Career', 'Health', 'Family', 'Money', 'Education', 'Other'];
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function InputForm({ onSubmit }) {
+  const { t } = useTranslation();
+
+  const categories = [
+    "Love",
+    "Career",
+    "Health",
+    "Family",
+    "Money",
+    "Education",
+    "Other",
+  ];
+
+  // 🔽 t 호출 이후 gender 라벨 지정
+  const genderOptions = [
+    { value: "Male", label: t("male") },
+    { value: "Female", label: t("female") },
+    { value: "Other", label: t("other") },
+  ];
+
   const [form, setForm] = useState({
-    givenName: '',
-    familyName: '',
-    dob: '',
-    city: '',
-    nationality: '',
+    givenName: "",
+    familyName: "",
+    dob: "",
+    city: "",
+    nationality: "",
+    gender: "Other",
     category: categories[0],
   });
 
@@ -24,102 +42,85 @@ export default function InputForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form}>
-      <h2>🔮 Fortune Telling Form</h2>
-
+    <form onSubmit={handleSubmit} className="form">
       <input
+        className="input"
         type="text"
         name="givenName"
-        placeholder="Given Name"
+        placeholder={`🧑 ${t("givenName")}`}
         value={form.givenName}
         onChange={handleChange}
         required
-        style={styles.input}
       />
 
       <input
+        className="input"
         type="text"
         name="familyName"
-        placeholder="Family Name"
+        placeholder={`🧑‍🏫 ${t("familyName")}`}
         value={form.familyName}
         onChange={handleChange}
         required
-        style={styles.input}
       />
 
       <input
+        className="input"
         type="date"
         name="dob"
         value={form.dob}
         onChange={handleChange}
         required
-        style={styles.input}
       />
 
       <input
+        className="input"
         type="text"
         name="city"
-        placeholder="City"
+        placeholder={`🌍 ${t("city")}`}
         value={form.city}
         onChange={handleChange}
         required
-        style={styles.input}
       />
 
       <input
+        className="input"
         type="text"
         name="nationality"
-        placeholder="Nationality"
+        placeholder={`🌐 ${t("nationality")}`}
         value={form.nationality}
         onChange={handleChange}
         required
-        style={styles.input}
       />
+
+      <select
+        name="gender"
+        value={form.gender}
+        onChange={handleChange}
+        className="input"
+      >
+        {genderOptions.map((g) => (
+          <option key={g.value} value={g.value}>
+            {g.label}
+          </option>
+        ))}
+      </select>
 
       <select
         name="category"
         value={form.category}
         onChange={handleChange}
-        style={styles.select}
+        className="input"
       >
         {categories.map((cat) => (
-          <option key={cat} value={cat}>{cat}</option>
+          <option key={cat} value={cat}>
+            {cat}
+          </option>
         ))}
       </select>
 
-      <button type="submit" style={styles.button}>Get My Fortune</button>
+      <button type="submit" className="button">
+        ✨ {t("getFortune")}
+      </button>
     </form>
   );
 }
-
-const styles = {
-  form: {
-    maxWidth: 400,
-    margin: 'auto',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
-    padding: '1rem'
-  },
-  input: {
-    padding: '10px',
-    fontSize: '16px',
-    borderRadius: '6px',
-    border: '1px solid #ccc'
-  },
-  select: {
-    padding: '10px',
-    fontSize: '16px',
-    borderRadius: '6px',
-    border: '1px solid #ccc'
-  },
-  button: {
-    padding: '12px',
-    backgroundColor: '#6200ee',
-    color: 'white',
-    border: 'none',
-    borderRadius: '6px',
-    fontSize: '16px',
-    cursor: 'pointer'
-  }
-};

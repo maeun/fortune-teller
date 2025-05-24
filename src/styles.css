@@ -1,0 +1,107 @@
+/* styles.css - 카드 폭 확대 및 이모지와 어울리는 디자인 */
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.lang-switch button {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.lang-switch button:hover {
+  transform: scale(1.2);
+}
+
+.main-card {
+  flex: 1;
+  max-width: 680px; /* 🔥 폭 확장 */
+  width: 95%;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #bbb;
+  font-size: 1rem;
+  background-color: #fafafa;
+}
+
+.input::placeholder {
+  font-style: italic;
+}
+
+.button {
+  background-color: #6a5acd;
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.button:hover {
+  background-color: #5a4cc0;
+  transform: translateY(-2px);
+}
+
+.result-card {
+  margin-top: 2rem;
+  background: #f0f4ff;
+  border-left: 6px solid #6a5acd;
+  padding: 1.5rem;
+  border-radius: 12px;
+  white-space: pre-wrap;
+}
+
+.loading {
+  margin-top: 1rem;
+  font-style: italic;
+  color: #555;
+}
+
+.footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+  padding: 1.5rem 0;
+}

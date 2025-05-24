@@ -1,21 +1,16 @@
 {
   "hosting": {
     "public": "build",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
+      {
+        "source": "/ads.txt",
+        "destination": "/ads.txt"
+      },
       {
         "source": "**",
         "destination": "/index.html"
       }
     ]
-  },
-  "firestore": {
-    "database": "(default)",
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
   }
 }
