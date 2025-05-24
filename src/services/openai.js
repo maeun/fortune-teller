@@ -11,7 +11,13 @@ export const getFortune = async ({
   nationality,
   gender,
   category,
+  lang,
 }) => {
+  const languageInstructions = {
+    en: "Respond in English.",
+    tr: "Cevabı Türkçe olarak ver.",
+  };
+
   const prompt = `
 You are a fortune teller. Based on the following information, provide a short-term and long-term fortune for the user:
 
@@ -25,6 +31,8 @@ Concern: ${category}
 Format response as:
 Short-term: ...
 Long-term: ...
+
+${languageInstructions[lang] || "Respond in English."}
 `;
 
   const response = await axios.post(

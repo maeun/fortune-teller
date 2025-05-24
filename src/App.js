@@ -14,7 +14,7 @@ function App() {
   const handleSubmit = async (formData) => {
     setLoading(true);
     try {
-      const fortune = await getFortune(formData);
+      const fortune = await getFortune({ ...formData, lang: i18n.language }); // 🔥 현재 언어 추가
       setResult(fortune);
       await saveFortune(formData, fortune);
     } catch (error) {
