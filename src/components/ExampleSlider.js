@@ -7,31 +7,33 @@ import "slick-carousel/slick/slick-theme.css";
 
 export default function ExampleSlider() {
   const { t } = useTranslation();
-  
+
   // Example data - replace with your actual translation data
   const examples = t("exampleFortunes", { returnObjects: true }) || [
     {
       title: "❤️ Love Fortune",
-      short: "A meaningful conversation will spark new energy in your love life.",
-      long: "Over the next year, emotional clarity will grow. A significant relationship shift will occur—stay open and honest."
+      short:
+        "A meaningful conversation will spark new energy in your love life.",
+      long: "Over the next year, emotional clarity will grow. A significant relationship shift will occur—stay open and honest.",
     },
     {
-      title: "💼 Career Fortune", 
-      short: "A new opportunity will present itself at work—be prepared to showcase your skills.",
-      long: "Over time, your professional network will expand. Embrace collaboration and stay proactive."
+      title: "💼 Career Fortune",
+      short:
+        "A new opportunity will present itself at work—be prepared to showcase your skills.",
+      long: "Over time, your professional network will expand. Embrace collaboration and stay proactive.",
     },
     {
       title: "✈️ Travel Fortune",
       short: "An unexpected journey awaits. Be ready for pleasant surprises.",
-      long: "Over the next year, meaningful travel experiences will expand your perspective and renew your spirit."
+      long: "Over the next year, meaningful travel experiences will expand your perspective and renew your spirit.",
     },
     {
       title: "💰 Financial Fortune",
       short: "A wise investment decision will bring unexpected returns.",
-      long: "Financial stability will gradually improve through careful planning and smart choices."
-    }
+      long: "Financial stability will gradually improve through careful planning and smart choices.",
+    },
   ];
-  
+
   const shortLabel = t("shortTerm") || "Short-term";
   const longLabel = t("longTerm") || "Long-term";
   const title = t("exampleFortunesTitle") || "Example Fortunes";
@@ -45,28 +47,36 @@ export default function ExampleSlider() {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    dotsClass: "slick-dots custom-dots",
+    dotsClass: "slick-dots custom-dots inside-box-dots",
     fade: true,
-    cssEase: 'linear'
+    cssEase: "linear",
+    pauseOnHover: true,
+    appendDots: (dots) => (
+      <div className="flex justify-center w-full mt-2 mb-0 relative z-10">
+        <ul className="inline-flex">{dots}</ul>
+      </div>
+    ),
   };
 
   return (
     <div className="w-full">
       {/* Slider Title */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-white mb-2 flex items-center justify-center">
+        <h2 className="text-3xl font-bold text-white mb-2 flex items-center justify-center transition-transform duration-300">
           <span className="mr-3 text-3xl">🃏</span>
           {title}
         </h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mx-auto"></div>
+        <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mx-auto transition-transform duration-300"></div>
       </div>
+
+      {/* Pagination toggles (dots) will be rendered here by appendDots */}
 
       {/* Custom Slider Container */}
       <div className="relative slider-container">
         <Slider {...settings}>
           {examples.map((fortune, idx) => (
             <div key={idx} className="px-2">
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-xl min-h-[280px] flex flex-col justify-center card-hover">
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-xl min-h-[280px] flex flex-col justify-center card-hover group relative">
                 {/* Fortune Title */}
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-white mb-3 text-glow">
@@ -103,10 +113,10 @@ export default function ExampleSlider() {
                 </div>
 
                 {/* Decorative Elements */}
-                <div className="absolute top-4 right-4 text-yellow-300/30 text-2xl animate-pulse">
+                <div className="absolute top-4 right-4 text-yellow-300/30 text-2xl">
                   ✨
                 </div>
-                <div className="absolute bottom-4 left-4 text-purple-300/30 text-xl animate-pulse delay-1000">
+                <div className="absolute bottom-4 left-4 text-purple-300/30 text-xl">
                   🌟
                 </div>
               </div>
@@ -120,17 +130,15 @@ export default function ExampleSlider() {
         .slider-container .slick-slider {
           margin: 0;
         }
-        
-        .slider-container .custom-dots {
-          bottom: -50px;
+        .custom-dots.inside-box-dots {
+          position: static !important;
           text-align: center;
+          z-index: 10;
         }
-        
-        .slider-container .custom-dots li {
+        .custom-dots.inside-box-dots li {
           margin: 0 4px;
         }
-        
-        .slider-container .custom-dots li button {
+        .custom-dots.inside-box-dots li button {
           width: 12px;
           height: 12px;
           border-radius: 50%;
@@ -139,61 +147,21 @@ export default function ExampleSlider() {
           padding: 0;
           transition: all 0.3s ease;
         }
-        
-        .slider-container .custom-dots li button:before {
+        .custom-dots.inside-box-dots li button:before {
           display: none;
         }
-        
-        .slider-container .custom-dots li.slick-active button {
+        .custom-dots.inside-box-dots li.slick-active button {
           background: linear-gradient(45deg, #a855f7, #ec4899);
           transform: scale(1.2);
           box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
-        
-        .slider-container .custom-dots li button:hover {
+        .custom-dots.inside-box-dots li button:hover {
           background: rgba(255, 255, 255, 0.6);
           transform: scale(1.1);
         }
-        
-        .card-hover {
-          position: relative;
-          overflow: hidden;
-          transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .card-hover:before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.1),
-            transparent
-          );
-          transition: left 0.5s;
-        }
-        
-        .card-hover:hover:before {
-          left: 100%;
-        }
-        
-        @media (max-width: 768px) {
-          .slider-container .custom-dots {
-            bottom: -40px;
-          }
-          
-          .card-hover:hover {
-            transform: translateY(-1px);
-          }
+        .slider-container .slick-prev,
+        .slider-container .slick-next {
+          display: none !important;
         }
       `}</style>
     </div>
