@@ -93,6 +93,21 @@ export default function InputForm({ onSubmit }) {
     setFocusedField(null);
   };
 
+  const getDobPlaceholder = () => {
+    switch (t("dob")) {
+      case "生年月日":
+        return "YYYY年MM月DD日";
+      case "出生日期":
+        return "YYYY年MM月DD日";
+      case "Doğum Tarihi":
+        return "YYYY-AA-GG";
+      case "Date of Birth":
+        return "YYYY-MM-DD";
+      default:
+        return "YYYY-MM-DD";
+    }
+  };
+
   const InputField = ({
     name,
     icon,
@@ -142,7 +157,7 @@ export default function InputForm({ onSubmit }) {
             name="dob"
             icon="🎂"
             type="date"
-            placeholder={t("dateOfBirth")}
+            placeholder={getDobPlaceholder()}
           />
           <InputField name="city" icon="🌍" placeholder={t("city")} />
         </div>

@@ -144,6 +144,16 @@ function App() {
             >
               🇯🇵 日本語
             </button>
+            <button
+              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
+                lang === "zh"
+                  ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25"
+                  : "bg-white/10 text-gray-300 hover:bg-white/20 backdrop-blur-sm border border-white/20"
+              }`}
+              onClick={() => changeLanguage("zh")}
+            >
+              🇨🇳 简体中文
+            </button>
           </div>
         </div>
       </section>
