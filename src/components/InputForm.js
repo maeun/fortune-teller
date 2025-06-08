@@ -100,35 +100,28 @@ export default function InputForm({ onSubmit }) {
     placeholder,
     required = true,
   }) => (
-    <div className="relative group">
-      <div
-        className={`absolute inset-0 bg-gradient-to-r from-purple-400/30 to-pink-400/30 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-          focusedField === name ? "opacity-100" : ""
-        }`}
-      ></div>
-      <div className="relative">
-        <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-xl">
-          {icon}
-        </span>
-        <input
-          className={`w-full pl-12 pr-4 py-4 bg-white/20 backdrop-blur-sm border ${
-            errors[name] ? "border-red-400" : "border-white/30"
-          } rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:border-white/50 transition-all duration-300 placeholder-gray-300 text-white shadow-lg hover:shadow-xl hover:bg-white/25`}
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          value={form[name]}
-          onChange={handleChange}
-          onFocus={() => handleFocus(name)}
-          onBlur={handleBlur}
-          required={required}
-        />
-        {errors[name] && (
-          <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-red-400 text-sm">
-            {errors[name]}
-          </div>
-        )}
-      </div>
+    <div className="relative">
+      <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-xl">
+        {icon}
+      </span>
+      <input
+        className={`w-full pl-12 pr-4 py-4 bg-white/20 backdrop-blur-sm border ${
+          errors[name] ? "border-red-400" : "border-white/30"
+        } rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:border-white/50 transition-all duration-300 placeholder-gray-300 text-white shadow-lg hover:shadow-xl hover:bg-white/25`}
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        value={form[name]}
+        onChange={handleChange}
+        onFocus={() => handleFocus(name)}
+        onBlur={handleBlur}
+        required={required}
+      />
+      {errors[name] && (
+        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-red-400 text-sm">
+          {errors[name]}
+        </div>
+      )}
     </div>
   );
 
@@ -160,101 +153,87 @@ export default function InputForm({ onSubmit }) {
             icon="🌐"
             placeholder={t("nationality")}
           />
-          <div className="relative group">
-            <div
-              className={`absolute inset-0 bg-gradient-to-r from-purple-400/30 to-pink-400/30 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                focusedField === "gender" ? "opacity-100" : ""
-              }`}
-            ></div>
-            <div className="relative">
-              <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-xl">
-                ⚤
-              </span>
-              <select
-                name="gender"
-                value={form.gender}
-                onChange={handleChange}
-                onFocus={() => handleFocus("gender")}
-                onBlur={handleBlur}
-                className={`w-full pl-12 pr-4 py-4 bg-white/20 backdrop-blur-sm border ${
-                  errors.gender ? "border-red-400" : "border-white/30"
-                } rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:border-white/50 transition-all duration-300 text-white shadow-lg hover:shadow-xl hover:bg-white/25 appearance-none cursor-pointer`}
-              >
-                {genderOptions.map((g) => (
-                  <option
-                    key={g.value}
-                    value={g.value}
-                    className="bg-gray-800 text-white"
-                  >
-                    {g.label}
-                  </option>
-                ))}
-              </select>
-              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                <svg
-                  className="w-5 h-5 text-gray-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-xl">
+              ⚤
+            </span>
+            <select
+              name="gender"
+              value={form.gender}
+              onChange={handleChange}
+              onFocus={() => handleFocus("gender")}
+              onBlur={handleBlur}
+              className={`w-full pl-12 pr-4 py-4 bg-white/20 backdrop-blur-sm border ${
+                errors.gender ? "border-red-400" : "border-white/30"
+              } rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:border-white/50 transition-all duration-300 text-white shadow-lg hover:shadow-xl hover:bg-white/25 appearance-none cursor-pointer`}
+            >
+              {genderOptions.map((g) => (
+                <option
+                  key={g.value}
+                  value={g.value}
+                  className="bg-gray-800 text-white"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </div>
+                  {g.label}
+                </option>
+              ))}
+            </select>
+            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+              <svg
+                className="w-5 h-5 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
             </div>
           </div>
         </div>
 
         <div className="w-full">
-          <div className="relative group">
-            <div
-              className={`absolute inset-0 bg-gradient-to-r from-indigo-400/30 to-purple-400/30 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                focusedField === "category" ? "opacity-100" : ""
-              }`}
-            ></div>
-            <div className="relative">
-              <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-xl">
-                🎯
-              </span>
-              <select
-                name="category"
-                value={form.category}
-                onChange={handleChange}
-                onFocus={() => handleFocus("category")}
-                onBlur={handleBlur}
-                className={`w-full pl-12 pr-4 py-4 bg-white/20 backdrop-blur-sm border ${
-                  errors.category ? "border-red-400" : "border-white/30"
-                } rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:border-white/50 transition-all duration-300 text-white shadow-lg hover:shadow-xl hover:bg-white/25 appearance-none cursor-pointer`}
-              >
-                {categories.map((category) => (
-                  <option
-                    key={category}
-                    value={category}
-                    className="bg-gray-800 text-white"
-                  >
-                    {category}
-                  </option>
-                ))}
-              </select>
-              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                <svg
-                  className="w-5 h-5 text-gray-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-xl">
+              🎯
+            </span>
+            <select
+              name="category"
+              value={form.category}
+              onChange={handleChange}
+              onFocus={() => handleFocus("category")}
+              onBlur={handleBlur}
+              className={`w-full pl-12 pr-4 py-4 bg-white/20 backdrop-blur-sm border ${
+                errors.category ? "border-red-400" : "border-white/30"
+              } rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:border-white/50 transition-all duration-300 text-white shadow-lg hover:shadow-xl hover:bg-white/25 appearance-none cursor-pointer`}
+            >
+              {categories.map((category) => (
+                <option
+                  key={category}
+                  value={category}
+                  className="bg-gray-800 text-white"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </div>
+                  {category}
+                </option>
+              ))}
+            </select>
+            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+              <svg
+                className="w-5 h-5 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
             </div>
           </div>
         </div>
